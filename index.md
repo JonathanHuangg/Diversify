@@ -2,25 +2,59 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+<!-- Text can be **bold**, _italic_, or ~~strikethrough~~. -->
 
-[Link to another page](./another-page.html).
+<!-- [Link to another page](./another-page.html). -->
 
-There should be whitespace between paragraphs.
+<!-- There should be whitespace between paragraphs.
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project. -->
 
-# Header 1
-# Header 1
-
-# Header 1
-# Header 1
+# Introduction
 
 
+In the realm of stock portfolio management, the application of advanced machine learning (ML) techniques for effective diversification is gaining traction. Our project aims to explore and leverage advanced ML models to categorize stock based on both textual description and financial data and give users an objective measure of their portfolio’s diversity. Recent studies have delved into clustering algorithms like Gaussian Mixture Models (GMM) for categorizing stocks. However, the potential of more advanced ML models in combination with clustering algorithms is still in its infancy.
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+# Problem Definition
 
-## Header 2
+The primary motivation is to overcome the shortcomings of conventional portfolio diversification and make a new and objective rating system for a portfolio's diversity. An article by Gilles Koumou investigates the utility of several common diversification practices and clears up several misconceptions, noting that “as the 2007–2009 financial crisis revealed, the concept remains misunderstood” <cite>(Koumou, 2020)</cite>. The project seeks to incorporate a nuanced understanding of stock types, utilizing features such as market capitalization, volatility, and textual information from company descriptions. Evidence-based studies on diversification practices, such as Koumou’s publication, will be considered throughout the duration of our project. The goal is to offer users a personalized and dynamically optimized portfolio aligned with individual preferences and market conditions.
+
+# Methods
+
+We plan to employ a Gaussian Mixture Model (GMM) to determine if a stock portfolio is diversified through a diversification index, as GMM allows for flexible modeling of the stock market <cite>(Luxenberg & Boyd, 2023)</cite>. In order to feed the GMM, we will need feature vectors of the stocks in the dataset. We will formulate a description of each stock and pass it through an NLP model, like Word2Vec, to get the feature vectors. The GMM will output a vector of probabilities representing the stock's categorization. The original model's aggregation process remains intact, creating a "portfolio diversity" model. Then, for each stock in a portfolio, we will feed the vector into our model and multiplied by its respective weight in the user's original portfolio, reflecting the percentage of their investment in each stock. Theoretically, a more diverse portfolio is indicated by a closer alignment of values in the vector. We will utilize internal validation metrics like Silhouette score Davies-Bouldin index to optimize our model and external validation methods, as defined in the next section, to assess model performance <cite>(Wang, 2022)</cite>. Metrics related to portfolio diversity and alignment with user preferences will be considered.
+
+# Potential Results and Discussion
+
+The results of our model will be a more comprehensive representation of the diversity of users’ stock portfolio. It is expected that the outcomes improve portfolio diversity assessment. Discussion will focus on result implications, potential refinements, and the model's generalizability to broader financial markets. We will discuss the effectiveness of our representation by checking whether the investment that is diverse in our model shows the capability to be risk-tolerant while delivering a satisfactory return.
+
+# Timeline and Contributions
+
+Please go to this [link](https://docs.google.com/spreadsheets/d/14tqgJGyeV8g7UURRkbnhb-IWGrCUOo9_/edit?usp=sharing&ouid=117826216135502018457&rtpof=true&sd=true) to access the proposed timeline and contribution table.
+
+# Checkpoint
+
+As we will be using NLP and GMM to create our diversity model, this would in fact be a Machine Learning project. We will use the following datasets and APIs:
+1. [Dataset for company name, size, and industry](https://www.kaggle.com/datasets/peopledatalabssf/free-7-million-company-dataset)
+2. [Dataset for volume](https://www.kaggle.com/datasets/paultimothymooney/stock-market-data/data) 
+3. [API for volatility score](https://www.alphaquery.com/stock/MSFT/volatility-option-statistics/30-day/historical-volatility)
+4. [API for the market cap](https://site.financialmodelingprep.com/developer/docs/market-capitalization-api/?direct=true)
+
+# References
+
+<cite>
+Koumou, G. B. (2020, June 4). Diversification and portfolio theory: a review. Financial Markets and Portfolio Management, 34, 267–312.
+</cite>
+
+<cite>
+Luxenberg, E., & Boyd, S. (2023). Portfolio construction with gaussian mixture returns and exponential utility via convex optimization. Optimization and Engineering. https://doi.org/10.1007/s11081-023-09814-y
+</cite>
+
+<cite>
+Wang Y, Grani A. Hanasusanto, Chin Pang Ho. (2022, July 7). Optimization online. Optimization Online. https://optimization-online.org/2022/07/8979/ 
+</cite>
+
+
+<!-- ## Header 2
 
 > This is a blockquote following a header.
 >
@@ -118,12 +152,12 @@ end
 <dd>Japan</dd>
 <dt>Color</dt>
 <dd>Green</dd>
-</dl>
+</dl> -->
 
-```
+<!-- ```
 Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
 ```
 
 ```
 The final element.
-```
+``` -->
