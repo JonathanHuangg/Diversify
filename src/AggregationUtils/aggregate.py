@@ -1,4 +1,4 @@
-## aggregatecsv.py
+## aggregate.py
 ##
 ## Aggregate stock market data from multiple CSVs
 ##
@@ -12,15 +12,16 @@ import csv
 import argparse
 import os
 
+ANSI_RESET = '\x1b[0m'
+ANSI_RED = '\x1b[0;41m'
+ANSI_YELLOW = '\x1b[0;43m'
+ANSI_GREEN = '\x1b[0;42m'
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--input", type=str, required=True, help="(str) Input folder; contains all CSVs to aggregate")
 parser.add_argument("-o", "--output", type=str, default="./result.csv", required=False, help="(str) Output file; should be path to .csv file (include file name)")
 parser.add_argument("-f", "--fill", type=str, default="", required=False, help="(str) Value to populate empty cells.")
 args = parser.parse_args()
-
-ANSI_RESET = '\x1b[0m'
-ANSI_RED = '\x1b[0;41m'
-ANSI_GREEN = '\x1b[0;42m'
 
 def saveDictionaryAsCSV(header: [str], dict: {str: [str]}, outputPath: str):
     with open(outputPath, 'w') as csvFile:
@@ -33,7 +34,7 @@ def saveDictionaryAsCSV(header: [str], dict: {str: [str]}, outputPath: str):
             metrics.insert(0, ticker)
             writer.writerow(metrics)
 
-def csvToDict(path: str) -> ([str], {str: any}):
+def csvToDict(path: str) -> ([str], {str: [str]}):
     result: {str: any} = {}
     resultHeader: [str] = []
     with open(path, newline='') as csvfile:
@@ -73,7 +74,7 @@ def mergeData(header1: [str], header2: [str], data1: {str: [str]}, data2: {str: 
     for key in mergedKeys:
         newData[key] = []
         if not key in data1:
-            if len(header1) > 0: print(ANSI_RED + " WARNING " + ANSI_RESET, key, "missing fields", header1)
+            if len(header1) > 0: print(ANSI_YELLOW + " WARNING " + ANSI_RESET, key, "missing fields", header1)
             for _ in header1:
                 newData[key].append(fill)
         else:
@@ -81,7 +82,7 @@ def mergeData(header1: [str], header2: [str], data1: {str: [str]}, data2: {str: 
                 newData[key].append(item)
 
         if not key in data2:
-            if len(header2) > 0: print(ANSI_RED + " WARNING " + ANSI_RESET, key, "missing fields", header2)
+            if len(header2) > 0: print(ANSI_YELLOW + " WARNING " + ANSI_RESET, key, "missing fields", header2)
             for _ in header2:
                 newData[key].append(fill)
         else:
