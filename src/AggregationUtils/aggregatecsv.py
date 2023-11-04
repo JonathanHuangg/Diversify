@@ -2,6 +2,11 @@
 ##
 ## Aggregate stock market data from multiple CSVs
 ##
+## Arguments:
+## -i/--input  : (str) Input folder; contains all CSVs to aggregate
+## -o/--output : (str) Output file; should be path to .csv file (include file name)
+## -f/--fill   : (str) Value to populate empty cells.
+##
 
 import csv
 import argparse
@@ -15,7 +20,7 @@ args = parser.parse_args()
 
 ANSI_RESET = '\x1b[0m'
 ANSI_RED = '\x1b[0;41m'
-ANSI_GREEN = '\x1b[32m'
+ANSI_GREEN = '\x1b[0;42m'
 
 def saveDictionaryAsCSV(header: [str], dict: {str: [str]}, outputPath: str):
     with open(outputPath, 'w') as csvFile:
@@ -88,6 +93,7 @@ def main(input: str, output: str, fill: str):
     files: [str] = os.listdir(input)
     resultHeader: [str] = []
     resultData: {str: [str]} = {}
+    print("---- MERGING ----")
     for file in files:
         csvPath: str = os.path.join(input, file)
         csvConversionResult = csvToDict(csvPath)
@@ -95,12 +101,15 @@ def main(input: str, output: str, fill: str):
             return
         header = csvConversionResult[0]
         csvDict = csvConversionResult[1]
+        print(file, ":", len(csvDict), "x", len(header))
         mergedResult = mergeData(resultHeader, header, resultData, csvDict, fill)
         if mergedResult is None:
             return
         resultHeader = mergedResult[0]
         resultData = mergedResult[1]
-    print("Successfully merged CSV files!")
+    print("-----------------")
+    print("MERGED : ", len(resultData), "x", len(resultHeader))
     saveDictionaryAsCSV(resultHeader, resultData, output)
+    print(ANSI_GREEN + " SUCCESS " + ANSI_RESET, "Aggregated", len(files), "CSV files.", "Result has", len(resultData), "rows and", len(resultHeader), "columns and is stored at", output)
 
 main(args.input, args.output, args.fill)
