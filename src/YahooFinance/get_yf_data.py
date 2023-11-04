@@ -32,7 +32,7 @@ ANSI_RESET = '\x1b[0m'
 ANSI_RED = '\x1b[0;41m'
 ANSI_GREEN = '\x1b[0;42m'
 
-def saveDictionaryAsCSV(dict: {str: str}, outputPath: str):
+def saveDictionaryAsCSV(dict: {str: [str]}, outputPath: str):
     with open(outputPath, 'w') as csvFile:
         writer = csv.writer(csvFile)
         writer.writerow(["Symbol", "Volume", "Market Cap", "P/E Ratio"])
