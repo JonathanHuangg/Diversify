@@ -9,6 +9,7 @@
 
 import csv
 import argparse
+import math
 
 ANSI_RESET = '\x1b[0m'
 ANSI_RED = '\x1b[0;41m'
@@ -63,7 +64,7 @@ def normalizeEntry(header: [str], entry: [str], maxVals: [str]) -> [str]:
         if metric == "Volume":
             normVal = str(float(entry[i]) / float(maxVals[i]))
         elif metric == "Market Cap":
-            normVal = str(float(entry[i]) / float(maxVals[i]))
+            normVal = str(math.log10(float(entry[i])) / math.log10(float(maxVals[i])))
         elif metric == "P/E Ratio":
             if entry[i] == "N/A":
                 normVal = "0"
