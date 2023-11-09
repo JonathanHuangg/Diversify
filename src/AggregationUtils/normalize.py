@@ -56,7 +56,7 @@ def csvToDict(path: str) -> ([str], {str: [str]}):
                     result[symbol].append(line[i])
     return (resultHeader, result)
 
-def normalizeEntry(header: [str], entry: [str], maxVals: [str]) -> [str]:
+def normalizeEntry(header: [str], entry: [str], maxVals: [str], minVals: [str]) -> [str]:
     normalizedEntry: [str] = []
     for i in range(0, len(header)):
         normVal: str = ""
@@ -86,16 +86,19 @@ def normalize(header: [str], data: {str: [str]}) -> {str: [str]}:
 
     # calculate maximum values for the parameters that need them
     maxVals: [float] = []
+    minVals: [float] = []
     for i in range(0, len(header)):
         maxVals.append(0)
+        minVals.append(math.inf)
     for key in list(data.keys()):
         for i in range(0, len(header)):
             if header[i] == "Volume" or header[i] == "Market Cap":
                 maxVals[i] = max(maxVals[i], float(data[key][i]))
+                minVals[i] = min(minVals[i], float(data[key][i]))
 
     # normalize each row
     for key in list(data.keys()):
-        result[key] = normalizeEntry(header, data[key], maxVals)
+        result[key] = normalizeEntry(header, data[key], maxVals, minVals)
     return result
 
 def main(input: str, output: str):

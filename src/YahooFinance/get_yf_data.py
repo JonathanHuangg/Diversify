@@ -81,8 +81,8 @@ def getQuoteManually(ticker: str, cookies: {str: any}, crumb: str) -> {str: any}
         print(ANSI_RED + " WARNING " + ANSI_RESET + " Unexpectedly missing `market_cap` for", ticker)
         result["market_cap"] = "**ERR**"
 
-    if "averageDailyVolume3Month" in fullQuote:
-        result["volume"] = fullQuote["averageDailyVolume3Month"]
+    if "averageDailyVolume3Month" in fullQuote and "sharesOutstanding" in fullQuote:
+        result["volume"] = fullQuote["averageDailyVolume3Month"] / fullQuote["sharesOutstanding"]
     else:
         print(ANSI_RED + " WARNING " + ANSI_RESET + " Unexpectedly missing `volume` for", ticker)
         result["volume"] = "**ERR**"
