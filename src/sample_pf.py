@@ -11,7 +11,7 @@ protfolio = {
 #### High Diverse Portfolio ####
 HDp1 = {
     "TSLA" : 1000,
-    "APPL" : 1000,
+    "AAPL" : 1000,
     "COO" : 1000,
 }
 
@@ -25,7 +25,7 @@ HDp2 = {
 
 
 # very diverse
-HDp4 = {
+HDp3 = {
     "AAPL" : 1000,
     "JNJ" : 1000,
     "DIS" : 1000,
@@ -51,7 +51,7 @@ MDp1 = {
 # lots of same industry with one different
 MDp2 = {
     "TSLA" : 1000,
-    "NIO" : 1000,
+    "DE" : 1000,
     "GM" : 1000,
     "COO" : 3000,
 }
@@ -59,7 +59,7 @@ MDp2 = {
 # different industry with different value
 MDp3 = {
     "JNJ" : 1000,
-    "APPL" : 1000,
+    "AAPL" : 1000,
     "DIS" : 2000,
     "JPM" : 1500,
     "PG" : 2000,
@@ -68,7 +68,7 @@ MDp3 = {
 # same industry with different value
 MDp4 = {
     "AMZN" : 1000,
-    "FB" : 2000,
+    "META" : 2000,
     "GOOGL" : 3000,
     "NFLX" : 4000,
 }
@@ -83,21 +83,21 @@ LDp1 = {
 # heavy on one stock
 LDp2 = {
     "TSLA" : 5000,
-    "APPL" : 10,
+    "AAPL" : 10,
     "COO" : 10,
 }
 
 # automobile industry
 LDp3 = {
     "TSLA" : 5000,
-    "NIO" : 5000,
+    "DE" : 5000,
     "GM" : 5000,
 }
 
 # tech industry
 LDp4 = {
     "AMZN" : 5000,
-    "FB" : 5000,
+    "META" : 5000,
     "GOOGL" : 5000,
     "NFLX" : 5000,
 }
