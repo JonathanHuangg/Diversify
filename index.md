@@ -19,6 +19,19 @@ In the realm of stock portfolio management, the application of advanced machine 
 
 The primary motivation is to overcome the shortcomings of conventional portfolio diversification and make a new and objective rating system for a portfolio's diversity. An article by Gilles Koumou investigates the utility of several common diversification practices and clears up several misconceptions, noting that “as the 2007–2009 financial crisis revealed, the concept remains misunderstood” <cite>(Koumou, 2020)</cite>. The project seeks to incorporate a nuanced understanding of stock types, utilizing features such as market capitalization, volatility, and textual information from company descriptions. Evidence-based studies on diversification practices, such as Koumou’s publication, will be considered throughout the duration of our project. The goal is to offer users a personalized and dynamically optimized portfolio aligned with individual preferences and market conditions.
 
+
+# Results and Discussion
+
+Based on the data, we have determined that the optimal number of clusters is 5 and have created a working diversity calculator for any number of sample portfolios. To test the model, we can test our model against various portfolios (High Diversity vs Low Diversity). The following portfolios are High Diversity portfolios, as they consist of various industries and spread out overall value.
+
+| head1        | head two          | three |
+|:-------------|:------------------|:------|
+| ok           | good swedish fish | nice  |
+| out of stock | good and plenty   | nice  |
+| ok           | good `oreos`      | hmm   |
+| ok           | good `zoute` drop | yumm  |
+
+
 # Methods
 
 We plan to employ a Gaussian Mixture Model (GMM) to determine if a stock portfolio is diversified through a diversification index, as GMM allows for flexible modeling of the stock market <cite>(Luxenberg & Boyd, 2023)</cite>. In order to feed the GMM, we will need feature vectors of the stocks in the dataset. We will formulate a description of each stock and pass it through an NLP model, like Word2Vec, to get the feature vectors. The GMM will output a vector of probabilities representing the stock's categorization. The original model's aggregation process remains intact, creating a "portfolio diversity" model. Then, for each stock in a portfolio, we will feed the vector into our model and multiplied by its respective weight in the user's original portfolio, reflecting the percentage of their investment in each stock. Theoretically, a more diverse portfolio is indicated by a closer alignment of values in the vector. We will utilize internal validation metrics like Silhouette score Davies-Bouldin index to optimize our model and external validation methods, as defined in the next section, to assess model performance <cite>(Wang, 2022)</cite>. Metrics related to portfolio diversity and alignment with user preferences will be considered.
