@@ -24,6 +24,7 @@ The primary motivation is to overcome the shortcomings of conventional portfolio
 
 Based on the data, we have determined that the optimal number of clusters is 5 and have created a working diversity calculator for any number of sample portfolios. To test the model, we can test our model against various portfolios (High Diversity vs Low Diversity). The following portfolios are High Diversity portfolios, as they consist of various industries and spread out overall value.
 
+
 | head1        | head two          | three |
 |:-------------|:------------------|:------|
 | ok           | good swedish fish | nice  |
