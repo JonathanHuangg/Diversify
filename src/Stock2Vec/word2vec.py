@@ -10,7 +10,7 @@ from nltk.corpus import stopwords
 import numpy as np
 
 ########## NUM DIMENSION ##########
-num_dim = 5
+num_dim = 10
 
 
 ######### HELPER FUNCTIONS #########
@@ -62,11 +62,12 @@ DF.insert(loc=0, column=None, value=data[0])
 DF.iloc[1:,:]
 
 ##### uncomment to save ####
-# DF.to_csv("stock2vec.csv", header=None, index=None)
+f_name = f'stock2vec_{num_dim}.csv'
+# DF.to_csv(f_name, header=None, index=None)
 
 ######## CSV to DF ########
 
-stock_vector = pd.read_csv('stock2vec.csv', header=None)
+stock_vector = pd.read_csv('f_name', header=None)
 # print(stock_vector)
 
 ######## For Testing ########
